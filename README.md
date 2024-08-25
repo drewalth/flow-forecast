@@ -5,7 +5,7 @@
 An experimental feature for [GaugeWatcher](https://apps.apple.com/us/app/gaugewatcher/id6498313776) that forecasts the
 flow rate of a river based on historical data.
 
-> This API is _experimental_ and is subject to change.
+> This API is _experimental_ and is subject to change. It also does not work as expected... Any contributions and/or suggestions are welcome.
 
 ## Introduction
 
