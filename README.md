@@ -28,4 +28,4 @@ Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this pr
 
 Since there is a lot TBD with this project, I've also been exploring using Swift, CoreML, and CreateML to build a model that can predict the flow rate of a river based on historical data. This is a work in progress and I'm still learning about machine learning and how to build models.
 
-If you're interested in seeing the Swift code, clone this repo and checkout the `swift` branch.
+If you're interested in seeing the Swift code, clone this repo and checkout the [swift](https://github.com/drewalth/flow-forecast/tree/swift) branch.
