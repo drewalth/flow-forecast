@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  flow-forecast:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flow-forecast
+    container_name: flow-forecast
+    ports:
+      - "3000:5000" # TODO: Better port mapping
+    volumes:
+      - .:/flow-forecast
