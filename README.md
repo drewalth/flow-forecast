@@ -25,6 +25,29 @@ Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this pr
 4. Run the app: `poetry run flask --app flow_forecast run`
 5. Make a request: `curl -X GET "http://127.0.0.1:5000/forecast?site_id=09359500"`
 
+### Docker
+
+If you prefer to use [Docker](https://www.docker.com/), you can build and run the app using the provided `Dockerfile`.
+
+1. Build the image: `docker build -t flow-forecast .`
+2. Run the container: `docker run -p 3000:5000 flow-forecast`
+
+Or you can use the provided `docker-compose.yml` file to build and run the app.
+
+1. Build and run the app: `docker-compose up`
+
+```bash
+curl -X GET "http://127.0.0.1:3000/forecast?site_id=09359500"
+```
+
+> TODO: Better port mapping for the Docker container.
+
+## Making Requests
+
+To make a request to the API, you need to provide a `site_id` query parameter. The `site_id` is the USGS site id for the river you want to forecast. You can find the site id by searching for the river on the [USGS website](https://waterdata.usgs.gov/nwis).
+
+In the example `curl` requests above we are using the site id `09359500` which is the site id for the [Animas River at Tall Timber Resort Above Tacoma, CO](https://waterdata.usgs.gov/monitoring-location/09359500/#parameterCode=00065&period=P7D&showMedian=false).
+ 
 ## Considerations
 
 - The data used for this project is from the [USGS](https://www.usgs.gov/) and is publicly available.
