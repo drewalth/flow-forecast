@@ -1,0 +1,9 @@
+{
+  "name": "flow-forecast",
+  "version": "1.0.0",
+  "description": "![hero](/assets/flowforecast-logo.jpeg)",
+  "private": true,
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.5"
+  }
+}

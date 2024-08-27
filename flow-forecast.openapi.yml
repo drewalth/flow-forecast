@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Flow Forecast API
+  description: A web service that provides forecasted flow rates for USGS gauge sites.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000 # change port to 3000 if running in Docker container 
+    description: Local development server
+  # - url: https://my-qa-server.com
+  #   description: QA/Staging server
+  # - url: https://my-production-server.com 
+  #   description: Production server
+
+paths:
+  /forecast:
+    get:
+      summary: Get flow forecast data for a specific site
+      description: Retrieve past values and forecasted flow data for a site specified by the `site_id`.
+      parameters:
+        - name: site_id
+          in: query
+          required: true
+          description: The ID of the site to retrieve flow forecast data for.
+          schema:
+            type: string
+            example: "09359500"
+      responses:
+        '200':
+          description: A JSON array containing past values and forecasted data.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    index:
+                      type: string
+                      description: The date or index of the data point.
+                      example: "8/24"
+                    past_value:
+                      type: number
+                      nullable: true
+                      description: The past flow value for the given index.
+                      example: 882.0
+                    forecast:
+                      type: number
+                      nullable: true
+                      description: The forecasted flow value for the given index.
+                      example: 197.0
+                    lower_error_bound:
+                      type: number
+                      nullable: true
+                      description: The lower error bound of the forecast.
+                      example: -103.0
+                    upper_error_bound:
+                      type: number
+                      nullable: true
+                      description: The upper error bound of the forecast.
+                      example: 510.0
+        '400':
+          description: Bad request. The `site_id` is missing or invalid.
+        '500':
+          description: Internal server error.

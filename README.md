@@ -53,13 +53,31 @@ In the example `curl` requests above we are using the site id `09359500` which i
 - The data used for this project is from the [USGS](https://www.usgs.gov/) and is publicly available.
 - The training data does not include all possible factors that may affect the flow rate of a river like weather, temperature, snowpack, dam releases etc.
 
+## OpenAPI + Client SDKs
 
-## Wishlist
+> Requires Nodejs and npm. Run `npm install` before generating clients.
 
-- [ ] Improve the model by including more factors that may affect the flow rate of a river. (e.g. weather, temperature, snow pack, dam releases etc.)
-- [ ] BYOD (Bring Your Own Data) - Allow users to provide their own data to train the model. Currently, the model is trained on data from the USGS. It would be nice to support other data sources.
-- [ ] Open API Spec - Create an OpenAPI spec for the API to auto-generate client libraries.
+The API is documented using [OpenAPI](https://swagger.io/specification/). The [OAS file](/flow-forecast.openapi.yml) is helpful for generating client SDKs in different languages. The [Makefile](/Makefile) has targets for generating Swift, Kotlin, and TypeScript client SDKs.
 
+Before generating clients, be sure to update the `servers` section of the OAS file to point to the correct host.
+
+```bash
+# Generates all clients
+make generate_clients 
+
+# Generates Swift client
+make swift_client
+
+# Generates Kotlin client
+make kotlin_client
+
+# Generates TypeScript client
+make typescript_client
+```
+
+Once you've generated the client(s) of your choosing, you can then use/distribute them as needed.
+
+For the full list of generators and options, see the [OpenAPI Generator CLI docs](https://openapi-generator.tech/docs/generators).
 
 ## Swift
 
