@@ -22,10 +22,11 @@ Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this pr
 
 - [ ] Improve the model by including more factors that may affect the flow rate of a river. (e.g. weather, temperature, snow pack, dam releases etc.)
 - [ ] BYOD (Bring Your Own Data) - Allow users to provide their own data to train the model. Currently, the model is trained on data from the USGS. It would be nice to support other data sources.
+- [ ] Open API Spec - Create an OpenAPI spec for the API to auto-generate client libraries.
 
 
 ## Swift
 
-Since there is a lot TBD with this project, I've also been exploring using Swift, CoreML, and CreateML to build a model that can predict the flow rate of a river based on historical data. This is a work in progress and I'm still learning about machine learning and how to build models.
+I've also been exploring using [Swift](https://developer.apple.com/swift/), [CoreML](https://developer.apple.com/documentation/coreml), and [CreateML](https://developer.apple.com/documentation/createml) to build a model that can predict the flow rate of a river based on historical data. This is a POC that doesn't quite work... I'm still learning about ML and how to build models.
 
 If you're interested in seeing the Swift code, clone this repo and checkout the [swift](https://github.com/drewalth/flow-forecast/tree/swift) branch.
