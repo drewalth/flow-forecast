@@ -2,14 +2,33 @@
 
 ![hero](/assets/flowforecast-logo.jpeg)
 
-An experimental feature for [GaugeWatcher](https://apps.apple.com/us/app/gaugewatcher/id6498313776) that forecasts the
-flow rate of a river based on historical data.
+Forecast the flow rate of a river based on historical data.
 
 > This project is _experimental_ and is subject to change. There is a lot of room for improvement. Any contributions and/or suggestions are welcome.
 
 ## Overview
 
-Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this project aims to forecast the flow rate of a river based on historical data. The goal is to provide users with a prediction of what the flow rate will be in the future to help them plan their activities accordingly.
+Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this project aims to forecast the flow rate of a river based on historical data. The goal is to provide users with a prediction of what the flow rate will be in the future.
+
+## Who is this for?
+
+This project is for anyone who is interested in predicting the flow rate of a river based on historical data. This could be useful for:
+whitewater kayaking, rafting, fishing, or any other activity that requires knowledge of the flow rate of a river.
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.12
+- [Poetry](https://python-poetry.org/)
+
+### Development
+
+1. clone the repo
+2. `cd` into the project directory: `cd /path/to/flow-forecast`
+3. Install dependencies: `poetry install`
+4. Run the app: `poetry run flask --app flow_forecast run`
+5. Make a request: `curl -X GET "http://127.0.0.1:5000/forecast?site_id=09359500"`
 
 ## Considerations
 
@@ -30,3 +49,8 @@ Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this pr
 I've also been exploring using [Swift](https://developer.apple.com/swift/), [CoreML](https://developer.apple.com/documentation/coreml), and [CreateML](https://developer.apple.com/documentation/createml) to build a model that can predict the flow rate of a river based on historical data. This is a POC that doesn't quite work... I'm still learning about ML and how to build models.
 
 If you're interested in seeing the Swift code, clone this repo and checkout the [swift](https://github.com/drewalth/flow-forecast/tree/swift) branch.
+
+## Related Projects
+
+- [FlowKit](https://github.com/drewalth/FlowKit) - A Swift package for working with flow data from the USGS, Canadian Hydrometric Data, and other sources.
+- [GaugeWatcher](https://apps.apple.com/us/app/gaugewatcher/id6498313776) - An iOS app for tracking the flow rate of your favorite rivers.
