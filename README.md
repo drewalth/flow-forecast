@@ -8,12 +8,7 @@ Forecast the flow rate of a river based on historical data.
 
 ## Overview
 
-Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this project aims to forecast the flow rate of a river based on historical data. The goal is to provide users with a prediction of what the flow rate will be in the future.
-
-## Who is this for?
-
-This project is for anyone who is interested in predicting the flow rate of a river based on historical data. This could be useful for:
-whitewater kayaking, rafting, fishing, or any other activity that requires knowledge of the flow rate of a river.
+Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this project aims to forecast the flow rate of a river based on historical data. The goal is to help kayakers, rafters, and other river enthusiasts predict the flow rate of a river so they can plan their trips accordingly.
 
 ## Getting Started
 
@@ -33,8 +28,7 @@ whitewater kayaking, rafting, fishing, or any other activity that requires knowl
 ## Considerations
 
 - The data used for this project is from the [USGS](https://www.usgs.gov/) and is publicly available.
-- The data is not always consistent, may contain missing values, and may not always be accurate.
-- The training data does not include all possible factors that may affect the flow rate of a river like weather, temperature, dam releases etc.
+- The training data does not include all possible factors that may affect the flow rate of a river like weather, temperature, snowpack, dam releases etc.
 
 
 ## Wishlist
