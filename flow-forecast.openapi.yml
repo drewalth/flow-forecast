@@ -4,11 +4,11 @@ info:
   description: A web service that provides forecasted flow rates for USGS gauge sites.
   version: 1.0.0
 servers:
-  - url: http://127.0.0.1:5000 # change port to 3000 if running in Docker container 
+  - url: http://127.0.0.1:5000 # change port to 3000 if running in Docker container
     description: Local development server
   # - url: https://my-qa-server.com
   #   description: QA/Staging server
-  # - url: https://my-production-server.com 
+  # - url: https://my-production-server.com
   #   description: Production server
 
 paths:
@@ -24,41 +24,85 @@ paths:
           schema:
             type: string
             example: "09359500"
+        - name: reading_parameter
+          in: query
+          required: false
+          description: The parameter code for the reading type. `00060` is discharge in cubic feet per second, `00065` is gauge height in feet, and `00010` is temperature in degrees Celsius. Defaults to `00060`. Note, gauge stations may not have all reading parameters available.
+          schema:
+            $ref: '#/components/schemas/ReadingParameter'
+            example: "00060"
+        - name: start_date
+          in: query
+          required: false
+          description: The start date for the forecast data in the format `YYYY-MM-DD`.
+          schema:
+            type: string
+            format: date
+            example: "2015-08-24"
+        - name: end_date
+          in: query
+          required: false
+          description: The end date for the forecast data in the format `YYYY-MM-DD`.
+          schema:
+            type: string
+            format: date
+            example: "2026-08-31"
       responses:
         '200':
           description: A JSON array containing past values and forecasted data.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    index:
-                      type: string
-                      description: The date or index of the data point.
-                      example: "8/24"
-                    past_value:
-                      type: number
-                      nullable: true
-                      description: The past flow value for the given index.
-                      example: 882.0
-                    forecast:
-                      type: number
-                      nullable: true
-                      description: The forecasted flow value for the given index.
-                      example: 197.0
-                    lower_error_bound:
-                      type: number
-                      nullable: true
-                      description: The lower error bound of the forecast.
-                      example: -103.0
-                    upper_error_bound:
-                      type: number
-                      nullable: true
-                      description: The upper error bound of the forecast.
-                      example: 510.0
+                $ref: '#/components/schemas/ForecastResult'
+                example:
+                  - index: "8/24"
+                    past_value: 882.0
+                    forecast: 197.0
+                    lower_error_bound: -103.0
+                    upper_error_bound: 510.0
+                  - index: "8/25"
+                    past_value: 197.0
+                    forecast: 510.0
+                    lower_error_bound: -103.0
+                    upper_error_bound: 510.0
+
         '400':
           description: Bad request. The `site_id` is missing or invalid.
         '500':
           description: Internal server error.
+components:
+  schemas:
+    ReadingParameter:
+      type: string
+      enum: [ "00060", "00065", "00010" ]
+      description: The parameter code for the reading type. `00060` is discharge in cubic feet per second, `00065` is gauge height in feet, and `00010` is temperature in degrees Celsius.
+      example: "00060"
+    ForecastResult:
+      type: array
+      items:
+        type: object
+        properties:
+          index:
+            type: string
+            description: The date or index of the data point.
+            example: "8/24"
+          past_value:
+            type: number
+            nullable: true
+            description: The past flow value for the given index.
+            example: 882.0
+          forecast:
+            type: number
+            nullable: true
+            description: The forecasted flow value for the given index.
+            example: 197.0
+          lower_error_bound:
+            type: number
+            nullable: true
+            description: The lower error bound of the forecast.
+            example: -103.0
+          upper_error_bound:
+            type: number
+            nullable: true
+            description: The upper error bound of the forecast.
+            example: 510.0
