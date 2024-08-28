@@ -6,6 +6,12 @@ Forecast the flow rate of a river based on historical data.
 
 > This project is _experimental_ and is subject to change. There is a lot of room for improvement. Any contributions and/or suggestions are welcome.
 
+### Features
+
+- [x] Forecast the flow rate of a river based on historical data.
+- [x] Dockerized API.
+- [x] OpenAPI documentation.
+
 ## Overview
 
 Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this project aims to forecast the flow rate of a river based on historical data. The goal is to help kayakers, rafters, and other river enthusiasts predict the flow rate of a river so they can plan their trips accordingly.
