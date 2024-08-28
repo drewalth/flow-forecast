@@ -7,10 +7,12 @@ from flow_forecast.services import usgs_service
 start_date = dt.date(1990, 1, 1)  # only train forecast from data since 1990
 
 
-def generate_prophet_forecast(site_id: str) -> pd.DataFrame:
+def generate_prophet_forecast(site_id: str, reading_parameter: str, start_date: dt.date, end_date: dt.date) -> pd.DataFrame:
     """Given a site, model, and length, returns a forecast DataFrame using fbprophet"""
 
-    site_data = usgs_service.get_daily_average_data(site_id)
+    site_data = usgs_service.get_daily_average_data(
+        site_id=site_id, reading_parameter=reading_parameter, start_date=start_date, end_date=end_date
+    )
     clean_data = usgs_service.clean_data(site_data)
     clean_data.columns = ["ds", "y"]
     forecast_df = generate_forecast(clean_data)

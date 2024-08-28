@@ -4,13 +4,6 @@ import datetime as dt
 import logging
 
 
-def get_forecast_length(last_data_day: dt.date) -> int:
-    first_forecast_date = last_data_day + dt.timedelta(days=1)
-    return pd.date_range(
-        start=first_forecast_date, end=dt.date(first_forecast_date.year, 12, 31)
-    ).size  # get number of remaining dates in the year including 'today'
-
-
 def generate_forecast(historic_data: pd.DataFrame) -> pd.DataFrame:
     """Takes in a training set (data - value) and a length to
     return a forecast DataFrame"""
@@ -30,3 +23,10 @@ def generate_forecast(historic_data: pd.DataFrame) -> pd.DataFrame:
     forecast = forecast.round()
 
     return forecast[["yhat", "yhat_lower", "yhat_upper"]]
+
+
+def get_forecast_length(last_data_day: dt.date) -> int:
+    first_forecast_date = last_data_day + dt.timedelta(days=1)
+    return pd.date_range(
+        start=first_forecast_date, end=dt.date(first_forecast_date.year, 12, 31)
+    ).size  # get number of remaining dates in the year including 'today'
