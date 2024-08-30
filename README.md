@@ -36,17 +36,14 @@ Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this pr
 If you prefer to use [Docker](https://www.docker.com/), you can build and run the app using the provided `Dockerfile`.
 
 1. Build the image: `docker build -t flow-forecast .`
-2. Run the container: `docker run -p 3000:5000 flow-forecast`
-
-Or you can use the provided `docker-compose.yml` file to build and run the app.
-
-1. Build and run the app: `docker-compose up`
+2. Run the container: `docker run -p 3000:3000 flow-forecast` or `docker compose up`.
 
 ```bash
 curl -X GET "http://127.0.0.1:3000/forecast?site_id=09359500"
 ```
 
-> TODO: Better port mapping for the Docker container.
+> Note: The current Dockerfile runs the production server. If you want to run the development server, you'll need to update the `CMD` in the Dockerfile.
+> See the [Flask docs](https://flask.palletsprojects.com/en/3.0.x/deploying/waitress/) for more info on deploying Flask apps.
 
 ## Making Requests
 
