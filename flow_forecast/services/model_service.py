@@ -4,7 +4,12 @@ from flow_forecast.models.prophet_forecast import generate_forecast
 from flow_forecast.services import usgs_service
 
 
-start_date = dt.date(1990, 1, 1)  # only train forecast from data since 1990
+current_year = dt.date.today().year
+# Only train forecast from data from the last x years.
+# This *should* be a parameter that can be set by the user, but for now we'll hardcode it.
+x_years_ago = current_year - 5
+
+start_date = dt.date(x_years_ago, 1, 1)
 
 
 def generate_prophet_forecast(site_id: str, reading_parameter: str, start_date: dt.date, end_date: dt.date) -> pd.DataFrame:
