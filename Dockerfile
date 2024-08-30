@@ -11,8 +11,6 @@ COPY flow_forecast/ ./flow_forecast
 
 RUN poetry install --only main
 
-EXPOSE 5000
+EXPOSE 3000
 
-#  poetry run flask --app flow_forecast run
-
-CMD ["poetry", "run", "flask", "--app", "flow_forecast", "run" , "--host=0.0.0.0"]
+CMD ["poetry", "run", "waitress-serve", "--host", "0.0.0.0", "--port" , "3000", "flow_forecast:app"]

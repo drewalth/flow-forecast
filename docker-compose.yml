@@ -7,6 +7,6 @@ services:
     image: flow-forecast
     container_name: flow-forecast
     ports:
-      - "3000:5000" # TODO: Better port mapping
+      - "3000:3000"
     volumes:
       - .:/flow-forecast
