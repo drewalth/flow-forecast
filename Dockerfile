@@ -1,16 +1,37 @@
-# Description: Dockerfile for the flow_forecast service
-# TODO: Slim down the image
+FROM python:3.12-slim as builder
 
-FROM python
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY pyproject.toml poetry.lock .
+ENV POETRY_VERSION=1.8.3
+RUN pip install "poetry==$POETRY_VERSION"
 
-RUN pip install poetry && poetry install --only main --no-root --no-directory
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_CACHE_DIR='/var/cache/pypoetry'
 
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock ./
+
+RUN --mount=type=cache,target=${POETRY_CACHE_DIR} \
+    poetry install --no-interaction --no-ansi --no-root --only main
+
+FROM python:3.12-slim as runtime
+
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN python -m venv $VIRTUAL_ENV
+
+COPY --from=builder /app/.venv /app/.venv
+
+WORKDIR /app
+
+COPY server.py .
 COPY flow_forecast/ ./flow_forecast
 
-RUN poetry install --only main
+EXPOSE 8000
 
-EXPOSE 3000
-
-CMD ["poetry", "run", "waitress-serve", "--host", "0.0.0.0", "--port" , "3000", "flow_forecast:app"]
+ENTRYPOINT ["python", "-m", "server"]
