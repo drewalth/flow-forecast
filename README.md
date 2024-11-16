@@ -130,8 +130,11 @@ make generate_clients
 
 ## Related Projects
 
+- [wh2o-vue](https://github.com/AmericanWhitewater/wh2o-vue): The official JS frontend for American Whitewater.
+- [aw-ios](https://github.com/AmericanWhitewater/aw-ios): The official iOS app for American Whitewater.
+- [aw-android](https://github.com/AmericanWhitewater/aw-android): The official Android app for American Whitewater.
 - [FlowKit](https://github.com/drewalth/FlowKit): A Swift package for working with flow data from USGS, Canadian Hydrometric Data, and other sources.
-- [GaugeWatcher](https://apps.apple.com/us/app/gaugewatcher/id6498313776): An iOS app for tracking the flow rate of your favorite rivers.
+- [GaugeWatcher](https://apps.apple.com/us/app/gaugewatcher/id6498313776): An iOS app for tracking river flow rates in North America and New Zealand.
 
 ## Contributing
 
