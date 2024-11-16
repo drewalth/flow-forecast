@@ -28,22 +28,19 @@ Using Facebook's [Prophet](https://facebook.github.io/prophet/) library, this pr
 1. clone the repo
 2. `cd` into the project directory: `cd /path/to/flow-forecast`
 3. Install dependencies: `poetry install`
-4. Run the app: `poetry run flask --app flow_forecast run`
-5. Make a request: `curl -X GET "http://127.0.0.1:5000/forecast?site_id=09359500"`
+4. Run the app: `poetry run start`
+5. Make a request: `curl -X GET "http://127.0.0.1:8000/forecast?site_id=09359500"`
 
 ### Docker
 
 If you prefer to use [Docker](https://www.docker.com/), you can build and run the app using the provided `Dockerfile`.
 
 1. Build the image: `docker build -t flow-forecast .`
-2. Run the container: `docker run -p 3000:3000 flow-forecast` or `docker compose up`.
+2. Run the container: `docker run -p 8000:8000 flow-forecast` or `docker compose up`.
 
 ```bash
-curl -X GET "http://127.0.0.1:3000/forecast?site_id=09359500"
+curl -X GET "http://127.0.0.1:8000/usgs/forecast?site_id=09359500"
 ```
-
-> Note: The current Dockerfile runs the production server. If you want to run the development server, you'll need to update the `CMD` in the Dockerfile.
-> See the [Flask docs](https://flask.palletsprojects.com/en/3.0.x/deploying/waitress/) for more info on deploying Flask apps.
 
 ## Making Requests
 
