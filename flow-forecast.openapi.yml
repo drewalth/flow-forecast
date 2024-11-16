@@ -4,7 +4,7 @@ info:
   description: A web service that provides forecasted flow rates for USGS gauge sites.
   version: 1.0.0
 servers:
-  - url: http://127.0.0.1:5000 # change port to 3000 if running in Docker container
+  - url: http://127.0.0.1:8000 # change port to 3000 if running in Docker container
     description: Local development server
   # - url: https://my-qa-server.com
   #   description: QA/Staging server
@@ -13,6 +13,7 @@ servers:
 
 paths:
   /forecast:
+    deprecated: true
     get:
       summary: Get flow forecast data for a specific site
       description: Retrieve past values and forecasted flow data for a site specified by the `site_id`.

@@ -5,29 +5,42 @@ description = ""
 authors = ["drewalth <16584198+drewalth@users.noreply.github.com>"]
 readme = "README.md"
 
+[tool.poetry.scripts]
+start = "server:app"
+
 [tool.poetry.dependencies]
 python = "^3.12"
 matplotlib = "~3.7.2"
 pandas = "~2.0.3"
 prophet = "~1.1.4"
 urllib3 = "~2.0.3"
-flask = "^3.0.3"
-waitress = "^3.0.0"
+fastapi = "^0.115.4"
+hypercorn = "^0.17.3"
+pydantic = "^2.9.2"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"
 black = "^24.8.0"
 pre-commit = "^3.8.0"
+isort = "^5.13.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry-exec-plugin.commands]
+lint = "flake8 && black --check ."
+format = "isort . && black ."
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
 [tool.flake8]
-max-line-length = 130
+max-line-length = 120
 extend-ignore = ["E203", "W503"]
 
 [tool.black]
-line-length = 130
+line-length = 120
 target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
 skip-string-normalization = false
